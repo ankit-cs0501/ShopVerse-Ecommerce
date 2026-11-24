@@ -84,8 +84,3 @@ This is a working portfolio/demo application, not a payment-ready production sto
 - Use transactional row locking for inventory in high-concurrency production checkouts.
 - Add pagination, image upload validation/storage (S3), and audit logs.
 
-## Suggested resume description
-**ShopVerse — Full-Stack E-Commerce Platform | Python, Flask, MySQL, Docker**
-- Built a full-stack shopping platform with authentication, searchable product catalogue, cart, checkout and order tracking.
-- Designed relational MySQL models for users, products, categories, carts, orders and reviews using SQLAlchemy.
-- Implemented role-based admin operations, inventory validation, CSRF protection and containerized deployment using Docker Compose.

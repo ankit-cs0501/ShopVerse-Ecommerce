@@ -1,0 +1,29 @@
+services:
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: shopverse
+      MYSQL_USER: shopverse_user
+      MYSQL_PASSWORD: strong_password
+      MYSQL_ROOT_PASSWORD: root_password_change_me
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot_password_change_me"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: replace-this-with-a-long-random-secret
+      DATABASE_URL: mysql+pymysql://shopverse_user:strong_password@db:3306/shopverse
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  mysql_data:
